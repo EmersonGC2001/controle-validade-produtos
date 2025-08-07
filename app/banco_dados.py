@@ -2,23 +2,23 @@ import sqlite3
 import os
 
 # Caminho correto do banco
-DB_PATH = os.path.join("data", "usuarios.db")
-conn = sqlite3.connect(DB_PATH)
-cursor = conn.cursor()
+DB_PATH = os.path.join("data", "produtos.db")
 
-# Cria a tabela se não existir
-cursor.execute("""
-    CREATE TABLE IF NOT EXISTS usuarios (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nome TEXT NOT NULL
-    )
-""")
-conn.commit()
+# Função para conectar ao banco
+def conectar():
+    return sqlite3.connect(DB_PATH)
 
-def adicionar_usuario(nome):
-    cursor.execute("INSERT INTO usuarios (nome) VALUES (?)", (nome,))
+# Função para criar a tabela se não existir
+def criar_tabela():
+    conn = conectar()
+    cursor = conn.cursor()
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS produtos (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            produto TEXT NOT NULL,
+            quantidade INTEGER NOT NULL,
+            data_vencimento TEXT NOT NULL
+        )
+    """)
     conn.commit()
-
-def listar_usuarios():
-    cursor.execute("SELECT nome FROM usuarios")
-    return [linha[0] for linha in cursor.fetchall()]
+    conn.close()
