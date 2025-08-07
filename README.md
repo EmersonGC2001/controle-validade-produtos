@@ -10,9 +10,5 @@ Este projeto tem como objetivo ajudar no **controle interno de produtos com venc
 - 📅 Identificação de produtos com vencimento próximo
 - 📊 Relatórios ou visualizações simples
 - 💾 Armazenamento local com SQLite
-- 🧹 Função para limpar produtos vencidos
-
----
-
-## 🧱 Estrutura do Projeto
+- 🧹 Função para limpar produtos 
 
